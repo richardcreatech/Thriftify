@@ -1,0 +1,367 @@
+#profile_page {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  /* border: solid; */
+  height: 90%;
+}
+
+/* ── Card ── */
+#profile_page .profile_card {
+  display: flex;
+  /* align-items: stretch; */
+  border-radius: 16px;
+  overflow: hidden;
+  /* max-width: 460px; */
+  width: 100%;
+  gap: 20px;
+  /* border: solid; */
+  height: 70%;
+}
+/* ── Photo side ── */
+#profile_page .profile_card > img {
+  border-radius: 16px;
+  width: 50%;
+  /* height: 50%; */
+  /* object-fit: cover; */
+  /* object-position: top center; */
+  /* flex-shrink: 0; */
+  /* display: block; */
+}
+
+/* ── Text side ── */
+#profile_page .profile_card > article {
+  border-radius: 16px;
+  background: #ffffff;
+  padding: 20px 20px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  /* justify-content: center; */
+/* height: 50%; */
+}
+
+#profile_page .profile_card > article h1 {
+  font-size: 18px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0 0 2px;
+  line-height: 1.2;
+}
+
+#profile_page .profile_card > article h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: #7b0196;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+#profile_page .profile_card > article p {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 1.6;
+  margin: 0;
+}
+
+
+
+
+/* ── Wrapper ── */
+#profile_page .payment_card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 0;
+  width: 100%;
+}
+
+/* ── ATM card face ── */
+#profile_page .atm_card {
+  width: 380px;
+  height: 220px;
+  border-radius: 18px;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    135deg,
+    #b8aee8 0%,
+    #9b8fd4 35%,
+    #7c6bbf 65%,
+    #a89dd6 100%
+  );
+  padding: 24px 28px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 0.5px solid #c4b8e8;
+}
+
+/* Soft light orbs */
+#profile_page .atm_card__shine {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(255, 255, 255, 0.1);
+  width: 200px;
+  height: 200px;
+  top: -60px;
+  left: -60px;
+}
+
+#profile_page .atm_card__shine--2 {
+  width: 220px;
+  height: 220px;
+  top: auto;
+  left: auto;
+  bottom: -80px;
+  right: -40px;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* Top row */
+#profile_page .atm_card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+#profile_page .atm_card__bank {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 0.04em;
+}
+
+#profile_page .atm_card__logo {
+  width: 36px;
+  height: 24px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#profile_page .atm_card__logo_inner {
+  width: 22px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1.5px solid rgba(255, 255, 255, 0.65);
+}
+
+/* Mid row — chip + number */
+.atm_card__mid {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Chip */
+#profile_page .atm_chip {
+  width: 36px;
+  height: 28px;
+  border-radius: 5px;
+  background: linear-gradient(135deg, #d4c97a, #b8a84e, #e0d48a, #c0a84e);
+  border: 0.5px solid rgba(160, 130, 40, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  padding: 4px 5px;
+  box-sizing: border-box;
+}
+
+#profile_page .atm_chip__row {
+  height: 4px;
+  background: rgba(130, 100, 20, 0.35);
+  border-radius: 1px;
+}
+
+#profile_page .atm_chip__row--split {
+  display: flex;
+  gap: 3px;
+  background: transparent;
+}
+
+#profile_page .atm_chip__cell {
+  flex: 1;
+  height: 4px;
+  background: rgba(130, 100, 20, 0.35);
+  border-radius: 1px;
+}
+
+#profile_page .atm_chip__gap {
+  width: 6px;
+}
+
+/* Card number */
+#profile_page .atm_card__number {
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 0.18em;
+  font-family: monospace;
+}
+
+/* Bottom row */
+#profile_page .atm_card__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: relative;
+  z-index: 1;
+}
+
+#profile_page .atm_card__holder_label {
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 3px;
+}
+
+#profile_page .atm_card__holder_name {
+  font-size: 13px;
+  font-weight: 500;
+  color: #fff;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+#profile_page .atm_card__status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 4px 10px;
+}
+
+#profile_page .atm_card__status_dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #a8e6a3;
+  flex-shrink: 0;
+}
+
+#profile_page .atm_card__status_text {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* ── Info rows ── */
+#profile_page .payment_info {
+  width: 380px;
+}
+
+#profile_page .payment_info__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 14px;
+}
+
+#profile_page .payment_info__row:last-child {
+  border-bottom: none;
+}
+
+#profile_page .payment_info__label {
+  color: #888;
+}
+
+#profile_page .payment_info__value {
+  font-weight: 500;
+  color: #111;
+}
+
+#profile_page .payment_info__value--verified {
+  color: #3a9e6e;
+}
+
+/* ── Edit button ── */
+#profile_page .payment_edit_btn {
+  width: 380px;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background: #ffffff27;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+#profile_page .payment_edit_btn:hover {
+  color: #000000;
+  background: #f5f5f5;
+}
+
+#profile_page .stats_card{
+/* border: solid; */
+/* padding: 2rem; */
+width: 100%;
+  grid-column: 1 / -1;
+  grid-row: 5 / -1;
+}
+
+/* ── Row wrapper ── */
+#profile_page .stats_card {
+  display: flex;
+  flex-direction: row;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ── Base card ── */
+#profile_page .stats_card .info_card {
+  flex: 1;
+  min-width: 140px;
+  border-radius: 20px;
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+#profile_page .stats_card .info_card h2 {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  opacity: 0.75;
+}
+
+#profile_page .stats_card .info_card p {
+  font-size: 32px;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1;
+}
+
+/* ── Per-card colors ── */
+#profile_page .stats_card .info_card.product {
+  background: #EB7BC0;
+  color: #ffffff;
+}
+
+#profile_page .stats_card .info_card.sales {
+  background: #EDA4BD;
+  color: #000000;
+}
+
+#profile_page .stats_card .info_card.marketplaces {
+  background: #C46BAE;
+  color: #000000;
+}

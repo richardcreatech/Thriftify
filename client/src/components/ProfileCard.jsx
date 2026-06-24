@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "../styles/profile_card.css";
 
 const dummyUser = {
@@ -8,7 +9,7 @@ const dummyUser = {
 
 export default function ProfileCard({ user = dummyUser }) {
   return (
-    <div className="profile-card">
+    <Link to={"/main/profile"} className="profile-card">
       <img
         className="profile-avatar"
         src={user.avatar}
@@ -18,6 +19,6 @@ export default function ProfileCard({ user = dummyUser }) {
         <span className="profile-name">{user.name}</span>
         <span className="profile-username">{user.username}</span>
       </div>
-    </div>
+    </Link>
   );
 }
