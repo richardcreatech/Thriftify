@@ -1,14 +1,60 @@
 import { useState } from "react";
 import "../styles/login.css";
+import Notification from "../components/Notification";
 
-export default function LoginForm() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [passcode, setPasscode] = useState("");
   const [showPasscode, setShowPasscode] = useState(false);
+  const [data, setData] = useState();
+  const [notification, setNotification] = useState({
+    message: "",
+    type: "",
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log({ email, passcode });
+
+    if (!passcode || !email) {
+      setNotification({
+        message: data.message || "Unable to sign in.",
+        type: "error",
+      });
+      return;
+    }
+
+    const my_details = { email, password: passcode };
+
+    const response = await fetch(`http://localhost:5000/auth/sign_in`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify(my_details),
+    });
+
+    const data = await response.json();
+    setData(data);
+
+    setNotification({
+      message: data.message || "Unable to sign in.",
+      type: data.success ? "success" : "error",
+    });
+
+    setTimeout(() => {
+      localStorage.setItem("token", data.token);
+      // location.assign("/profile");
+      setData(null);
+    }, 2000);
+
+    if (!response.ok) {
+      console.log(data.message);
+      return;
+    }
+
+    console.log("Login successful:", data);
   };
 
   return (
@@ -17,7 +63,7 @@ export default function LoginForm() {
       <p className="login-subtitle">
         Sign in and jump back into the Thriftify community.
       </p>
-
+      {/* <Notification message={notification.message} type={notification.type} /> */}
       <div className="login-form">
         <div className="input-wrapper">
           <input
@@ -49,7 +95,7 @@ export default function LoginForm() {
         <p className="trouble-link">
           <a href="#">Having trouble in sign in?</a>
         </p>
-
+        <Notification message={notification.message} type={notification.type} />
         <button className="submit-btn" onClick={handleSubmit} type="button">
           Sign in
         </button>
@@ -57,3 +103,5 @@ export default function LoginForm() {
     </form>
   );
 }
+
+export default LoginForm;

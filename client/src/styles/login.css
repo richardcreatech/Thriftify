@@ -108,3 +108,22 @@
 #auth_main .submit-btn:hover {
   background: #54006b;
 }
+
+@media (max-width: 1000px) {
+  #mascot {
+    width: min(900px, 80vw);
+    bottom: -100px;
+  }
+
+  #auth_main .login-card {
+
+    border-radius: 0px;
+    padding: 36px 28px;
+    max-width: 660px;
+    width: 90%;
+    height: 90%;
+    margin: 0 auto;
+    border: solid 0.25px rgba(0, 0, 0, 0.162);
+    /* box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07); */
+  }
+}

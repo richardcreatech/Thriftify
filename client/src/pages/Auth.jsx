@@ -9,8 +9,8 @@ function Auth() {
       <AuthHeader />
       <section id="auth_form">
         <LoginForm />
-          </section>
-          <img id="mascot" src={mascot} />
+      </section>
+      <img id="mascot" src={mascot} />
     </main>
   );
 }
