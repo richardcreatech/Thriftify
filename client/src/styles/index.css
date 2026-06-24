@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+*::-webkit-scrollbar{
+  display: none;
+}
+
 :root {
   --logo-color: #25012b;
   --primary-color: #3b82f6;

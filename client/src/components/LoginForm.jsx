@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "../styles/login.css";
 import Notification from "../components/Notification";
+import { useNavigate } from "react-router-dom";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -11,6 +12,8 @@ function LoginForm() {
     message: "",
     type: "",
   });
+
+  const nav = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +48,7 @@ function LoginForm() {
 
     setTimeout(() => {
       localStorage.setItem("token", data.token);
-      // location.assign("/profile");
+      data.success && nav("/main");
       setData(null);
     }, 2000);
 

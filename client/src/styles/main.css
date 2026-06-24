@@ -1,0 +1,144 @@
+#my_main_page {
+  background-color: #000;
+  /* background-image: url("public/pattern.png"); */
+  overflow: scroll;
+  color: #fff;
+  background-repeat: repeat;
+  background-size: 40px 40px;
+  height: 100vh;
+  display: flex;
+}
+
+#my_main_page .main_aside {
+  width: 72px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: 16px 0;
+  background: #0b0b0b;
+}
+
+#my_main_page .aside_logo {
+  margin-bottom: 30px;
+}
+
+#my_main_page .aside_logo img {
+  width: 38px;
+  height: 38px;
+}
+
+#my_main_page .aside_nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#my_main_page .aside_spacer {
+  flex: 1;
+}
+
+#my_main_page .aside_link {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  color: #9a9a9a;
+  background: #151515;
+
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+#my_main_page .aside_link:hover {
+  color: #fff;
+  background: #202020;
+}
+
+#my_main_page .aside_link.active {
+  background: #c000ff;
+  color: white;
+}
+
+#main_content {
+  width: 100%;
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  #my_main_page .main_aside {
+    position: fixed;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: calc(100vw - 24px);
+    max-width: 100%;
+
+    min-height: unset;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 8px;
+
+    border-radius: 10px;
+
+    background: rgba(15, 15, 15, 0.9);
+    /* background: transparent; */
+    /* backdrop-filter: blur(12px); */
+
+    z-index: 1000;
+
+    box-sizing: border-box;
+  }
+
+  #my_main_page .aside_logo,
+  #my_main_page .aside_spacer {
+    display: none;
+  }
+
+  #my_main_page .aside_nav,
+  #my_main_page .bottom_nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+
+    /* flex: 1; */
+
+    gap: 4px;
+  }
+
+  #my_main_page .bottom_nav {
+    margin-left: 4px;
+  }
+
+  #my_main_page .aside_link {
+    width: 30px;
+    height: 30px;
+
+    min-width: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    flex-shrink: 0;
+  }
+
+  #my_main_page .aside_link svg {
+    font-size: 0.95rem;
+  }
+}

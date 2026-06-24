@@ -1,7 +1,7 @@
 import React from "react";
-import LoginForm from "../components/LoginForm";
-import AuthHeader from "../components/AuthHeader";
-import mascot from "../assets/mascot.png";
+import LoginForm from "../../components/LoginForm";
+import AuthHeader from "../../components/AuthHeader";
+import mascot from "../../assets/mascot.png";
 
 function Auth() {
   return (
