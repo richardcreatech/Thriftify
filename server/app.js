@@ -6,7 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({ origin: ["http://localhost:5173"] }));
-// app.use("/auth", auth_routes);
+app.use("/auth", auth_routes);
 app.use("/articles", article_routes);
 
 app.listen(5000, () => {

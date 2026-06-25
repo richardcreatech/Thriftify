@@ -166,5 +166,6 @@ const MarketplaceSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", UserSchema);
+const Sellers = mongoose.model("Sellers", SellerSchema);
 
-module.exports = {User};
+module.exports = {User , Sellers};
