@@ -11,6 +11,8 @@ import {
   faAnchor,
   faBell,
   faUser,
+  faChartBar,
+  faBarChart,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Logod from "../assets/logo_thriftify.svg";
@@ -40,7 +42,7 @@ function MainAside() {
 
         {/* Performance */}
         <Link to="/main/performance" className="aside_link">
-          <FontAwesomeIcon icon={faBell} />
+          <FontAwesomeIcon icon={faBarChart} />
         </Link>
 
         {/* No route yet */}

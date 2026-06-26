@@ -1,0 +1,241 @@
+#revenue_content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+#revenue_overview {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+#revenue_withdraw_options {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas: "market personal account withdraw";
+  gap: 1.5rem;
+}
+
+.revenue_info_card,
+.withdraw_opt_card,
+.change_account_details,
+.Withdraw {
+  background: rgba(18, 18, 24, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 22px;
+
+  backdrop-filter: blur(18px);
+
+  padding: 1.6rem;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.02),
+    0 15px 40px rgba(0, 0, 0, 0.35);
+
+  transition: 0.3s ease;
+}
+
+.revenue_info_card:hover,
+.withdraw_opt_card:hover,
+.change_account_details:hover,
+.Withdraw:hover {
+  /* transform: translateY(-4px); */
+
+  border-color: #b517ff;
+
+  /* box-shadow:
+    0 0 18px rgba(181, 23, 255, 0.18),
+    0 15px 45px rgba(0, 0, 0, 0.45); */
+}
+
+.revenue_info_card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.revenue_info_card span {
+  width: 64px;
+  height: 64px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 18px;
+
+  background: #7b2ff7;
+
+  color: white;
+  font-size: 1.4rem;
+
+}
+
+.revenue_info_card p {
+  color: #8f93aa;
+  font-size: 0.9rem;
+}
+
+.revenue_info_card h1 {
+  color: white;
+  font-size: 2rem;
+  margin: 0.4rem 0;
+  font-weight: 700;
+}
+
+.withdraw_opt_card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.4rem;
+}
+
+.withdraw_opt_card > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.withdraw_opt_card span {
+  width: 54px;
+  height: 54px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 16px;
+
+  background: #1f1635;
+  color: #c84dff;
+
+  font-size: 1.2rem;
+}
+
+.withdraw_opt_card h2 {
+  color: white;
+  font-size: 2rem;
+}
+
+.withdraw_opt_card p,
+.withdraw_opt_card small {
+  color: #8f93aa;
+}
+
+.withdraw_opt_card button,
+.withdraw_funds,
+.change_account {
+  width: 100%;
+
+  padding: 0.9rem;
+
+  border: none;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+
+  /* color: white; */
+
+  cursor: pointer;
+    border: solid #000;
+  background:  #ab00d5;
+
+  transition: 0.25s;
+}
+
+.withdraw_opt_card button:hover,
+.withdraw_funds:hover,
+.change_account:hover {
+  /* transform: translateY(-2px); */
+
+  box-shadow: 0 0 20px rgba(180, 30, 255, 0.5);
+}
+
+.change_account_details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.change_account_details > div {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.change_account_details span:first-child {
+  width: 60px;
+  height: 60px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 16px;
+
+  background: #17172d;
+
+  color: #4ef4ff;
+
+  font-size: 1.4rem;
+
+  box-shadow: 0 0 16px rgba(78, 244, 255, 0.25);
+}
+
+.Withdraw {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.Withdraw input {
+  width: 100%;
+
+  background: #14141e;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: white;
+
+  padding: 1rem;
+
+  border-radius: 12px;
+
+  outline: none;
+
+  transition: 0.25s;
+}
+
+.Withdraw input:focus {
+  border-color: #c84dff;
+
+  box-shadow: 0 0 12px rgba(200, 77, 255, 0.3);
+}
+
+.available_balance {
+  color: #4ef4ff;
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  #revenue_overview {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #revenue_withdraw_options {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "market personal"
+      "account withdraw";
+  }
+}
+
+@media (max-width: 700px) {
+  #revenue_overview {
+    grid-template-columns: 1fr;
+  }
+
+  #revenue_withdraw_options {
+    grid-template-columns: 1fr;
+  }
+}

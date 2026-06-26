@@ -11,13 +11,13 @@
   padding: 3px;
 }
 
-.verified {
+#profile_page .verified {
   background: #fff;
   padding: 9px;
   color: black;
 }
 
-.verified {
+#profile_page .verified {
   padding: 1.5rem;
 
   background: #ffffff;
@@ -30,14 +30,14 @@
   min-height: 220px;
 }
 
-.verified h2 {
+#profile_page .verified h2 {
   font-size: rem;
   font-weight: 700;
   margin: 0;
   color: #111;
 }
 
-.verified small {
+#profile_page .verified small {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -49,7 +49,7 @@
   font-size: 0.95rem;
 }
 
-.verified p {
+#profile_page .verified p {
   margin-top: 0.5rem;
 
   color: #555;
@@ -57,7 +57,7 @@
   font-size: 0.95rem;
 }
 
-article img {
+#profile_page article img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -78,7 +78,7 @@ article img {
   height: auto;
 }
 
-article {
+#profile_page article {
   margin: 4px;
   position: relative;
   overflow: hidden;
@@ -97,7 +97,7 @@ article {
   transition: all 0.3s ease;
 }
 
-article:hover {
+#profile_page article:hover {
   transform: translateY(-4px);
 
   border-color: rgba(255, 255, 255, 0.18);
