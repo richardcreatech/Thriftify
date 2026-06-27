@@ -47,66 +47,7 @@ function Orders() {
             </div>
           </div>
         </article>
-        <article>
-          <div>
-            <span>MJ</span>
-          </div>
-          <div>
-            <p>Mary Johnson</p>
-            <div>
-              <button>Preview</button>
-              <button>Take Order</button>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div>
-            <span>MJ</span>
-          </div>
-          <div>
-            <p>Mary Johnson</p>
-            <div>
-              <button>Preview</button>
-              <button>Take Order</button>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div>
-            <span>MJ</span>
-          </div>
-          <div>
-            <p>Mary Johnson</p>
-            <div>
-              <button>Preview</button>
-              <button>Take Order</button>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div>
-            <span>MJ</span>
-          </div>
-          <div>
-            <p>Mary Johnson</p>
-            <div>
-              <button>Preview</button>
-              <button>Take Order</button>
-            </div>
-          </div>
-        </article>
-        <article>
-          <div>
-            <span>MJ</span>
-          </div>
-          <div>
-            <p>Mary Johnson</p>
-            <div>
-              <button>Preview</button>
-              <button>Take Order</button>
-            </div>
-          </div>
-        </article>
+        
       </section>
     </section>
   );
