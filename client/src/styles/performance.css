@@ -13,9 +13,7 @@
   flex-wrap: wrap;
 }
 
-#pie {
-  flex-shrink: 0;
-}
+
 
 #performance_overview p {
   font-size: 1.3rem;
@@ -31,7 +29,8 @@
 .overview_content {
   /* border: solid #ffffff2a; */
   display: flex;
-  /* align-items: center; */
+  /* flex-direction: column; */
+  align-items: center;
   justify-content: space-between;
   gap: 3rem;
 }
@@ -42,6 +41,7 @@
 }
 
 .overview_info {
+    height: fit-content;
   padding: 2rem;
   flex: 1;
   display: flex;

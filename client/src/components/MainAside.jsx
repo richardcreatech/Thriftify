@@ -14,6 +14,7 @@ import {
   faChartBar,
   faBarChart,
   faBiking,
+  faMessage,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Logod from "../assets/logo_thriftify.svg";
@@ -53,7 +54,7 @@ function MainAside() {
 
         {/* No route yet */}
         <Link to="/main" className="aside_link">
-          <FontAwesomeIcon icon={faAnchor} />
+          <FontAwesomeIcon icon={faMessage} />
         </Link>
       </nav>
 
