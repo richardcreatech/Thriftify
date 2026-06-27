@@ -8,6 +8,7 @@ import Dashboard from "./pages/main/Dashboard";
 import Profile from "./pages/main/Profile";
 import Performance from "./pages/main/Performance";
 import Revenue from "./pages/main/Revenue";
+import Orders from "./pages/main/Orders";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="revenue" element={<Revenue />} />
         <Route path="profile" element={<Profile />} />
         <Route path="performance" element={<Performance />} />
+        <Route path="orders" element={<Orders />} />
       </Route>
     </Routes>
   );
