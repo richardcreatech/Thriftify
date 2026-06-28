@@ -9,14 +9,16 @@ function Reviews() {
   return (
     <section id="reviews_pg">
       <header id="reviews_header">
-       
         <ProfileCard />
       </header>
 
       <main id="reviews_main">
         <section id="my_product">
           <div id="about_product">
-            <img src="https://i.pinimg.com/736x/12/d9/8b/12d98bd220654ab8f4cba1a965d40104.jpg" alt="" />
+            <img
+              src="https://i.pinimg.com/1200x/f8/16/a0/f816a0473e66316315afb81c2a73c015.jpg"
+              alt=""
+            />
 
             <div id="product_info">
               <h2>Product Name</h2>
@@ -175,8 +177,8 @@ function Reviews() {
               <span>10</span> reviews
             </p>
           </div>
-        <div>
-                <ProgressBar />
+          <div>
+            <ProgressBar />
           </div>
         </section>
       </main>
