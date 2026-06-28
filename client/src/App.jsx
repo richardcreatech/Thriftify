@@ -9,6 +9,7 @@ import Profile from "./pages/main/Profile";
 import Performance from "./pages/main/Performance";
 import Revenue from "./pages/main/Revenue";
 import Orders from "./pages/main/Orders";
+import Reviews from "./pages/main/Reviews";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="profile" element={<Profile />} />
         <Route path="performance" element={<Performance />} />
         <Route path="orders" element={<Orders />} />
+        <Route path="reviews" element={<Reviews />} />
       </Route>
     </Routes>
   );

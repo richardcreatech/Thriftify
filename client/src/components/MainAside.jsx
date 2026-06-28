@@ -15,9 +15,12 @@ import {
   faBarChart,
   faBiking,
   faMessage,
+  faShop,
+  faMoneyBill,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Logod from "../assets/logo_thriftify.svg";
+import { faProductHunt } from "@fortawesome/free-brands-svg-icons";
 
 function MainAside() {
   return (
@@ -36,15 +39,14 @@ function MainAside() {
           <FontAwesomeIcon icon={faHouse} />
         </Link>
 
-        {/* Revenue */}
-        <Link to="/main/revenue" className="aside_link">
+        {/* Performance */}
+        <Link to="/main/performance" className="aside_link">
           <FontAwesomeIcon icon={faTv} />
         </Link>
 
-
-        {/* Performance */}
-        <Link to="/main/performance" className="aside_link">
-          <FontAwesomeIcon icon={faBarChart} />
+        {/* Revenue */}
+        <Link to="/main/revenue" className="aside_link">
+          <FontAwesomeIcon icon={faMoneyBill} />
         </Link>
 
         {/* No route yet */}
@@ -53,7 +55,7 @@ function MainAside() {
         </Link>
 
         {/* No route yet */}
-        <Link to="/main" className="aside_link">
+        <Link to="/main/reviews" className="aside_link">
           <FontAwesomeIcon icon={faMessage} />
         </Link>
       </nav>
@@ -64,11 +66,11 @@ function MainAside() {
       {/* Bottom Navigation */}
       <nav className="aside_nav bottom_nav">
         <Link to="/" className="aside_link">
-          <FontAwesomeIcon icon={faPhone} />
+          <FontAwesomeIcon icon={faShop} />
         </Link>
 
         <Link to="/" className="aside_link">
-          <FontAwesomeIcon icon={faGear} />
+          <FontAwesomeIcon icon={faProductHunt} />
         </Link>
       </nav>
     </aside>
