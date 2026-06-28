@@ -351,17 +351,6 @@
   justify-content: space-between;
 }
 
-.my_info:nth-child(1) {
-  background: #d96cb6;
-}
-
-.my_info:nth-child(2) {
-  background: #e4a0bd;
-}
-
-.my_info:nth-child(3) {
-  background: #b968ad;
-}
 
 .my_info h2 {
   font-size: 1rem;
@@ -374,9 +363,4 @@
   font-weight: 700;
   color: white;
   margin-top: auto;
-}
-
-.my_info:nth-child(2) h1 , .my_info:nth-child(2) h2{
-  color: #000    ;
-  /* backgroun: #000    ; */
 }
