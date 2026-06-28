@@ -16,7 +16,7 @@ function Reviews() {
       <main id="reviews_main">
         <section id="my_product">
           <div id="about_product">
-            <img src="https://shorturl.at/CGiiF" alt="" />
+            <img src="https://i.pinimg.com/736x/12/d9/8b/12d98bd220654ab8f4cba1a965d40104.jpg" alt="" />
 
             <div id="product_info">
               <h2>Product Name</h2>

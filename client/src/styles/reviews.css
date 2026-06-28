@@ -3,6 +3,7 @@
   grid-template-columns: 320px 1fr 320px;
   gap: 2rem;
   align-items: start;
+  padding-bottom: 5rem;
 }
 
 #reviews_pg {
@@ -36,8 +37,8 @@
 }
 
 #my_product {
-  background: #1b1b1d7e;
-  border: solid 0.25px #85858528;
+  /* background: #1b1b1d7e; */
+  /* border: solid 0.25px #85858528; */
   border-radius: 5px;
   padding: 1.5rem;
   display: flex;
@@ -95,7 +96,7 @@
 }
 
 #remove_product {
-  background: #2525253c;
+  background: #2525256a;
   color: white;
 }
 

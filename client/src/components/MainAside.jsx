@@ -65,13 +65,13 @@ function MainAside() {
 
       {/* Bottom Navigation */}
       <nav className="aside_nav bottom_nav">
-        <Link to="/" className="aside_link">
+        <Link to="/main/marketplaces" className="aside_link">
           <FontAwesomeIcon icon={faShop} />
         </Link>
 
-        <Link to="/" className="aside_link">
+        {/* <Link to="/" className="aside_link">
           <FontAwesomeIcon icon={faProductHunt} />
-        </Link>
+        </Link> */}
       </nav>
     </aside>
   );

@@ -10,6 +10,7 @@ import Performance from "./pages/main/Performance";
 import Revenue from "./pages/main/Revenue";
 import Orders from "./pages/main/Orders";
 import Reviews from "./pages/main/Reviews";
+import Marketplaces from "./pages/main/Marketplaces";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="performance" element={<Performance />} />
         <Route path="orders" element={<Orders />} />
         <Route path="reviews" element={<Reviews />} />
+        <Route path="marketplaces" element={<Marketplaces />} />
       </Route>
     </Routes>
   );
