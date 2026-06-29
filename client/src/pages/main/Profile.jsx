@@ -34,12 +34,13 @@ function Profile() {
           is_verified,
           profile_picture,
           cover_photo,
-          followers,
           total_products,
           total_sales,
           phone_number,
           status,
           createdAt,
+          markets,
+          bank_details
         } = data.seller;
 
         const user = {
@@ -50,15 +51,13 @@ function Profile() {
           verified: is_verified,
           avatar: profile_picture,
           banner: cover_photo,
-          followers,
           totalProducts: total_products,
           totalSales: total_sales,
           phoneNumber: phone_number,
-          status,
-          joinedAt: new Date(createdAt).toLocaleDateString("en-US", {
-            month: "long",
-            year: "numeric",
-          }),
+          marketplaces: markets.length,
+          bank_details: bank_details,
+          status : status,
+       
         };
 
         setUser(user);
@@ -71,7 +70,7 @@ function Profile() {
 
   return (
     <section id="profile_page">
-         <div id="layer_2">
+      <div id="layer_2">
         <article className="my_info">
           <h2>Total Products</h2>
           <h1>{user.totalProducts}</h1>
@@ -84,19 +83,24 @@ function Profile() {
 
         <article className="my_info">
           <h2>My Markets</h2>
-          <h1>4000</h1>
+          <h1>{user.marketplaces}</h1>
         </article>
       </div>
       <div id="layer_1">
         <article>
-          <img src={user.avatar || "https://shorturl.at/KFqta"} width={70} alt="" />
+          <img
+            src={user.avatar || "https://shorturl.at/KFqta"}
+            width={70}
+            alt=""
+          />
         </article>
         <article className="verified">
-          <h2>{ user.username}</h2>
-          <small>{user.verified && <FontAwesomeIcon icon={faShieldHeart} />} {user.storeName}</small>
-          <p>
-            {user.bio}
-          </p>
+          <h2>{user.username}</h2>
+          <small>
+            {user.verified && <FontAwesomeIcon icon={faShieldHeart} />}{" "}
+            {user.storeName}
+          </small>
+          <p>{user.bio}</p>
         </article>
         <article className="payment_card">
           {/* ── ATM Card face ── */}
@@ -105,7 +109,7 @@ function Profile() {
             <div className="atm_card__shine atm_card__shine--2" />
 
             <div className="atm_card__top">
-              <span className="atm_card__bank">Opay</span>
+              <span className="atm_card__bank">{user?.bank_details?.bank_name}</span>
               <div className="atm_card__logo">
                 <div className="atm_card__logo_inner" />
               </div>
@@ -121,28 +125,26 @@ function Profile() {
                 </div>
                 <div className="atm_chip__row" />
               </div>
-              <span className="atm_card__number">•••• •••• •••• 1234</span>
+              <span className="atm_card__number">{user?.bank_details?.account_number}</span>
             </div>
 
             <div className="atm_card__bottom">
               <div>
                 <p className="atm_card__holder_label">Card holder</p>
-                <p className="atm_card__holder_name">Richard Doe</p>
+                <p className="atm_card__holder_name">{user?.bank_details?.account_name}</p>
               </div>
-              <div className="atm_card__status">
+              {user?.verified && <div className="atm_card__status">
                 <span className="atm_card__status_dot" />
                 <span className="atm_card__status_text">Verified</span>
-              </div>
+              </div>}
             </div>
           </div>
 
           {/* ── Info rows ── */}
 
           {/* ── Edit button ── */}
-          
         </article>
       </div>
-   
     </section>
   );
 }
