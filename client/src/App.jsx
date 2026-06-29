@@ -11,6 +11,7 @@ import Revenue from "./pages/main/Revenue";
 import Orders from "./pages/main/Orders";
 import Reviews from "./pages/main/Reviews";
 import Marketplaces from "./pages/main/Marketplaces";
+import SingleMarket from "./pages/main/SingleMarket";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="reviews" element={<Reviews />} />
         <Route path="marketplaces" element={<Marketplaces />} />
       </Route>
+      <Route path="/main/marketplaces/:id" element={<SingleMarket />} />
     </Routes>
   );
 }
