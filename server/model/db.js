@@ -34,7 +34,6 @@ const UserSchema = new mongoose.Schema(
       enum: ["buyer", "seller"],
       default: "user",
     },
-
   },
   {
     timestamps: true,
@@ -94,10 +93,10 @@ const SellerSchema = new mongoose.Schema(
       default: false,
     },
 
-    marketplaces: [
+    markets: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Marketplace",
+        ref: "Markets",
       },
     ],
 
@@ -143,6 +142,30 @@ const VerificationSchema = new mongoose.Schema({
   },
 });
 
+const productSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  category: String,
+  price: {
+    type: Number,
+    required: true,
+  },
+  quantity: {
+    type: Number,
+    required: true,
+  },
+  imageURL: {
+    type: String,
+    default: "",
+  },
+  order_number: {
+    type: Number,
+    default: 0,
+  },
+});
+
 const MarketplaceSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.Types.ObjectId,
@@ -157,7 +180,12 @@ const MarketplaceSchema = new mongoose.Schema({
 
   banner: String,
 
-  category: String,
+  products: [productSchema],
+
+  target_funds: {
+    type: Number,
+    default: 0,
+  },
 
   status: {
     type: String,
@@ -167,5 +195,6 @@ const MarketplaceSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", UserSchema);
 const Sellers = mongoose.model("Sellers", SellerSchema);
+const Markets = mongoose.model("Markets", MarketplaceSchema);
 
-module.exports = {User , Sellers};
+module.exports = { User, Sellers, Markets };
