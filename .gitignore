@@ -1,26 +1,24 @@
-# Dependencies
+
+
 client/node_modules/
-server/node_modules/
-
-# Environment variables
-server/.env
-client/.env
-.env
-
-# Logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Build files
 client/dist/
 client/build/
 
-# OS files
+client/npm-debug.log*
+client/yarn-debug.log*
+client/yarn-error.log*
+
+server/venv/
+server/__pycache__/
+server/**/*.pyc
+server/.env
+
+.env
+.env.local
+.env.development
+.env.production
+
 .DS_Store
 Thumbs.db
 
-# Editor files
 .vscode/
-.idea/
