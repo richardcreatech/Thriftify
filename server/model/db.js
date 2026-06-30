@@ -142,6 +142,33 @@ const VerificationSchema = new mongoose.Schema({
   },
 });
 
+const reviewSchema = new mongoose.Schema({
+  product: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Product",
+    required: true,
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  rating: {
+    type: Number,
+    min: 1,
+    max: 5,
+    required: true,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -164,6 +191,16 @@ const productSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  revenue_generated: {
+    type: Number,
+    default: 0,
+  },
+  reviews: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Review", // This will link each review to the Review collection
+    },
+  ],
 });
 
 const MarketplaceSchema = new mongoose.Schema({
@@ -196,5 +233,6 @@ const MarketplaceSchema = new mongoose.Schema({
 const User = mongoose.model("User", UserSchema);
 const Sellers = mongoose.model("Sellers", SellerSchema);
 const Markets = mongoose.model("Markets", MarketplaceSchema);
+const Review = mongoose.model("Review", reviewSchema);
 
-module.exports = { User, Sellers, Markets };
+module.exports = { User, Sellers, Markets, Review };
