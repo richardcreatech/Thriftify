@@ -223,6 +223,10 @@ const MarketplaceSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
+  revenue_generated: {
+    type: Number,
+    default: 0,
+  },
 
   status: {
     type: String,
