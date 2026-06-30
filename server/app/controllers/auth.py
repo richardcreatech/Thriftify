@@ -12,9 +12,10 @@ async def signup_controller(user):
         }
 
     new_user = {
-        "username": user.username,
+        "name": user.name,
         "email": user.email,
-        "password": user.password
+        "password": user.password,
+        "role" : "buyer"
     }
 
     await db.users.insert_one(new_user)
