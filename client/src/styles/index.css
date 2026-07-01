@@ -1,0 +1,23 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  transition: all 0.2s linear;
+}
+
+
+*::-webkit-scrollbar{
+  display: none;
+}
+
+body {
+   font-family: var(--font-bubble);
+  margin: 0;
+  background: #eef2f5;
+}
+
+.page-layout {
+  display: flex;
+  height: 100vh;
+}
