@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: "Inter", sans-serif;
@@ -6,15 +6,13 @@
   transition: all 0.2s linear;
 }
 
-
-*::-webkit-scrollbar{
+*::-webkit-scrollbar {
   display: none;
 }
 
 body {
-   font-family: var(--font-bubble);
+  font-family: var(--font-bubble);
   margin: 0;
-  /* background: #eef2f5; */
 }
 
 .page-layout {

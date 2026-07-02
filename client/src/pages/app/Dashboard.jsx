@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/dashboard.css";
-import Header from "../../components/Header";
 import API_BASE_URL from "../../config/api";
 
 function Dashboard() {
@@ -17,7 +16,7 @@ function Dashboard() {
     if (!query) return true;
 
     return [market.name, market.description].some((value) =>
-      value?.toLowerCase().includes(query)
+      value?.toLowerCase().includes(query),
     );
   });
 
@@ -56,7 +55,6 @@ function Dashboard() {
 
   return (
     <section id="dashboard_pg">
-      <Header />
       <section id="market_content">
         <div className="page_heading">
           <div id="pg_desc">
@@ -106,7 +104,7 @@ function Dashboard() {
                   <p>{market.description}</p>
                 </div>
 
-                <button className="visit_market">Visit Marketplace</button>
+                <button onClick={() =>{location.assign(`main/product/${market.id}`)}} className="visit_market">Visit Marketplace</button>
               </article>
             ))}
         </section>
