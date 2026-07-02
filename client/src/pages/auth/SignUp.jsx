@@ -14,7 +14,16 @@ function SignUp() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    // Handle form submission logic here
+
+    if (!fullName || !email || !password) {
+      setData({ message: "Please fill in your name, email, and password." });
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setData({ message: "Passwords do not match." });
+      return;
+    }
 
     try {
       const response = await fetch(`${API_BASE_URL}/auth/signup`, {
@@ -23,24 +32,31 @@ function SignUp() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          full_name: fullName,
+          name: fullName,
           email: email,
           password: password,
         }),
       });
 
-      const data = await response.json();
+      const result = await response
+        .json()
+        .catch(() => ({ message: "Something went wrong." }));
+      setData(result);
 
-      if (!data.error) {
-        setModal(true);
-        setData(data);
-        setTimeout(() => {
-          setData(null);
-        }, 2000);
-        console.log("Signup successful:", data);
+      if (!response.ok) {
+        console.error("Signup failed:", result);
+        return;
       }
+
+      setModal(true);
+      setFullName("");
+      setEmail("");
+      setPassword("");
+      setConfirmPassword("");
+      console.log("Signup successful:", result);
     } catch (error) {
       console.error(error);
+      setData({ message: "Something went wrong. Please try again." });
     }
   }
 
@@ -85,7 +101,12 @@ function SignUp() {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <input type="password" placeholder="Confirm password" />
+      <input
+        type="password"
+        placeholder="Confirm password"
+        value={confirmPassword}
+        onChange={(e) => setConfirmPassword(e.target.value)}
+      />
 
       <button className="primary-btn">Sign Up</button>
     </form>

@@ -7,21 +7,32 @@ import { faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
 import Successful from "../../components/Success";
 
 function Auth() {
+  const [darkMode, setDarkMode] = React.useState(false);
+  const [notice, setNotice] = React.useState("");
 
-    const [darkMode, setDarkMode] = React.useState(false);
-
-    const toggleDark = () => {
+  const toggleDark = () => {
     document.body.classList.toggle("dark");
     setDarkMode(!darkMode);
-  };``
+  };
+
+  const handleAuthNotice = (message) => {
+    setNotice(message);
+    setTimeout(() => setNotice(""), 2400);
+  };
+
   return (
     <div className="auth-container">
+      {notice && <Successful text={notice} />}
       <div className="auth-card">
         <AuthShowcase />
-        <AuthForm />
+        <AuthForm onNotice={handleAuthNotice} />
       </div>
       <span className="drk-mode" onClick={toggleDark}>
-        {darkMode ? <FontAwesomeIcon icon={faSun} /> : <FontAwesomeIcon icon={faMoon} />}
+        {darkMode ? (
+          <FontAwesomeIcon icon={faSun} />
+        ) : (
+          <FontAwesomeIcon icon={faMoon} />
+        )}
       </span>
     </div>
   );

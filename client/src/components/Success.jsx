@@ -1,15 +1,14 @@
 const Successful = ({ text }) => {
   return (
-    <article id="success_message">
+    <article id="success_message" role="status" aria-live="polite">
       <div className="my_message">
-        <h6> {text} </h6>
-
+        <h6>{text || "Success"}</h6>
       </div>
-      <div class="progress-container">
-        <div class="progress-bar"></div>
+      <div className="progress-container">
+        <div className="progress-bar"></div>
       </div>
     </article>
   );
 };
 
-export default Successful
+export default Successful;
