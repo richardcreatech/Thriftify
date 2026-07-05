@@ -19,7 +19,19 @@ function CreateProductModal({ isOpen, onClose, marketId }) {
   const [quantity, setQuantity] = useState("");
   const [category, setCategory] = useState("");
 
+  const [imageFile, setImageFile] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
+
   if (!isOpen) return null;
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setImageFile(file);
+    setImagePreview(URL.createObjectURL(file));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -97,6 +109,30 @@ function CreateProductModal({ isOpen, onClose, marketId }) {
             onChange={(e) => setQuantity(e.target.value)}
             required
           />
+
+          {/* Uploading Or Previewing Images */}
+          {/* This part handles file uploads */}
+          <label htmlFor="">Product Image</label>
+          <input
+            type="file"
+            accept="image/"
+            onChange={handleImageChange} />
+          
+          {imagePreview && (
+          <div className="image_preview">
+            <img
+              src={imagePreview}
+              alt="Preview"
+              style={{
+                width: "180px",
+                borderRadius: "10px",
+                marginTop: "10px",
+              }}
+            />
+               </div>
+            )}
+
+          {/* Image Concerns End Here */}
 
           <h4>Select Category</h4>
 

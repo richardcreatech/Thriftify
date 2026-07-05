@@ -46,7 +46,7 @@ function Dashboard() {
 
   return (
     <section id="dashboard_pg">
-      <ProfileCard />
+     
 
       {/* Filter tabs */}
       <div className="filter-tabs">

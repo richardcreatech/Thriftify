@@ -113,7 +113,7 @@ function Marketplaces() {
             onClick={handlePopup}
             className="create_a_marketplaces button-with-icon"
           >
-            <FontAwesomeIcon className="icon" icon={faPlus} />{" "}
+            <FontAwesomeIcon className="icon" icon={faPlus} />
             <span className="text">Create a Marketplace</span>
           </button>
         </section>

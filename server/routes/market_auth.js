@@ -1,5 +1,7 @@
 const express = require("express");
 const market_routes = express.Router();
+
+const {upload} = require("../middleware/uploads")
 const { create_a_market } = require("../controller/market_creation");
 const { authMiddle } = require("../middleware/authMiddle");
 const { getMarketplaces } = require("../controller/get_markets");
@@ -16,7 +18,7 @@ market_routes.get("/get_market", authMiddle, getMarketplaces);
 market_routes.get("/market_info/:marketId", authMiddle, getMarketInfo);
 market_routes.get("/market_performance", authMiddle, get_market_performance);
 market_routes.post("/make", authMiddle, create_a_market);
-market_routes.post("/create_market/:marketId", authMiddle, createProduct);
+market_routes.post("/create_market/:marketId", authMiddle, upload.single("image"),createProduct);
 market_routes.patch(
   "/edit_product/:marketId/product/:productId",
   authMiddle,

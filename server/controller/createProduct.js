@@ -1,13 +1,11 @@
 const { Sellers, Markets } = require("../model/db");
-
-const productImages = [
-  "https://....image1.jpg",
-  "https://....image2.jpg",
-  "https://....image3.jpg",
-  "https://....image4.jpg",
-];
+const { uploadImageToS3 } = require("../utils/putObject");
 
 const createProduct = async (req, res) => {
+  // console.log(req.body)
+  // console.log(req.file.originalname)
+  // console.log(req.file.mimetype)
+  // console.log(req.file.size)
   try {
     const { marketId } = req.params;
     const { name, category, price, quantity } = req.body;
@@ -40,15 +38,33 @@ const createProduct = async (req, res) => {
       });
     }
 
-    const randomImage =
-      productImages[Math.floor(Math.random() * productImages.length)];
+    // const randomImage =
+    //   productImages[Math.floor(Math.random() * productImages.length)];
+
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please upload a product image.",
+      });
+    }
+
+    const uploadResult = await uploadImageToS3(req.file);
+
+    if (!uploadResult) {
+      return res.status(500).json({
+        success: false,
+        message: "Failed to upload image.",
+      });
+    }
+
+    const { url } = uploadResult;
 
     const newProduct = {
       name,
       category,
       price,
       quantity,
-      imageURL: randomImage,
+      imageURL: url,
     };
 
     market.products.push(newProduct);
@@ -62,8 +78,8 @@ const createProduct = async (req, res) => {
       success: true,
       message: "Product created successfully.",
       product: market.products[market.products.length - 1],
-        products: market.products,
-      market
+      products: market.products,
+      market,
     });
   } catch (err) {
     console.error(err);

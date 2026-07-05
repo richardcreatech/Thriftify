@@ -1,6 +1,6 @@
 .profile-card {
   position: fixed;
-  top: 16px;
+  bottom: 16px;
   right: 16px;
   display: flex;
   align-items: center;

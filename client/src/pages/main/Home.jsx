@@ -10,6 +10,7 @@ function Home() {
           <MainAside />
           <section id='main_content'>
               <Outlet />
+               <ProfileCard />
           </section>
     </main>
   )

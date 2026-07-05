@@ -11,7 +11,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProfileCard from "../../components/ProfileCard";
 import "../../styles/products.css";
-import CreateProductModal from "../../components/CreateProductModal";
+// import CreateProductModal from "../../components/CreateProductModal";
 
 const categories_box = [
   "Electronics",
@@ -45,8 +45,8 @@ function SingleMarket() {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [activeTab, setActiveTab] = useState("details");
 
-  const [imagePreview, setImagePreview] = useState("");
-  const [imageFile, setImageFile] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
+  const [imageFile, setImageFile] = useState(null);
   const filteredProducts =
     selectedCategory === "All"
       ? market?.products
@@ -54,6 +54,16 @@ function SingleMarket() {
           (product) => product.category === selectedCategory,
         );
 
+   const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (!file) return;
+
+    setImageFile(file);
+     setImagePreview(URL.createObjectURL(file));
+     URL.revokeObjectURL(imagePreview);
+  };      
+  
   const handleEditProduct = (product) => {
     setSelectedProduct(product);
 
@@ -71,20 +81,21 @@ function SingleMarket() {
     try {
       const token = localStorage.getItem("token");
 
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("price", price);
+      formData.append("quantity", quantity);
+      formData.append("category", category)
+      formData.append("image", imageFile)
+
       const response = await fetch(
         `http://localhost:5000/market/create_market/${id}`,
         {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            name,
-            price: Number(price),
-            quantity: Number(quantity),
-            category,
-          }),
+          body: formData,
         },
       );
 
@@ -285,6 +296,25 @@ function SingleMarket() {
                 onChange={(e) => setQuantity(e.target.value)}
                 required
               />
+
+              {/* Uploading Or Previewing Images */}
+              {/* This part handles file uploads */}
+              <label htmlFor="">Product Image</label>
+              <input type="file" accept="image/*" onChange={handleImageChange} />
+
+              {imagePreview && (
+                <div className="image_preview">
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    style={{
+                      width: "180px",
+                      borderRadius: "10px",
+                      marginTop: "10px",
+                    }}
+                  />
+                </div>
+              )}
 
               <h4>Select Category</h4>
 
