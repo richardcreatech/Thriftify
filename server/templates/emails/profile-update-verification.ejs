@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Confirm your profile update</title>
+  </head>
+  <body style="margin:0;padding:32px 12px;background:#f5f2f7;font-family:Arial,Helvetica,sans-serif;color:#291f32;">
+    <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;">Your Thriftify profile verification code is inside.</div>
+    <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="max-width:560px;margin:0 auto;background:#ffffff;border:1px solid #ebe5ef;border-radius:18px;overflow:hidden;box-shadow:0 12px 36px rgba(37,1,43,.08);">
+      <tr>
+        <td style="padding:25px 32px;background:#25012b;color:#ffffff;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+              <td style="font-size:20px;font-weight:bold;letter-spacing:-.4px;">thriftify<span style="color:#d39bea;">.</span></td>
+              <td align="right" style="font-size:10px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;color:#e5c8ef;">Account security</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:38px 32px 22px;">
+          <div style="width:44px;height:44px;margin:0 0 22px;border-radius:14px;background:#f5eafa;color:#8a1db6;text-align:center;line-height:44px;font-size:21px;font-weight:bold;">&#10003;</div>
+          <p style="margin:0 0 9px;color:#8a1db6;font-size:11px;font-weight:bold;letter-spacing:1.5px;text-transform:uppercase;">Profile verification</p>
+          <h1 style="margin:0 0 14px;color:#291f32;font-size:27px;line-height:1.25;letter-spacing:-.5px;">Was this you?</h1>
+          <p style="margin:0;color:#625b66;font-size:15px;line-height:1.75;">Someone requested a change to your Thriftify profile. Enter the code below to confirm it was you. Your changes won't be saved until you verify.</p>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:8px 32px 22px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="background:#faf7fc;border:1px solid #eee4f3;border-radius:14px;">
+            <tr>
+              <td align="center" style="padding:22px 12px 8px;color:#746b79;font-size:11px;font-weight:bold;letter-spacing:1.4px;text-transform:uppercase;">Your one-time code</td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:8px 10px 12px;">
+                <table role="presentation" cellpadding="0" cellspacing="5">
+                  <tr>
+                    <% code.split("").forEach(function(digit) { %>
+                      <td align="center" style="width:38px;height:48px;border:1px solid #e8d9ef;border-radius:8px;background:#ffffff;color:#25012b;font-size:25px;font-weight:bold;"><%= digit %></td>
+                    <% }); %>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr>
+              <td align="center" style="padding:0 12px 20px;color:#746b79;font-size:12px;">This code expires in <strong style="color:#493c50;">10 minutes</strong>.</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:0 32px 30px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" width="100%" style="border-left:3px solid #d5a5e5;background:#fbf9fc;">
+            <tr>
+              <td style="padding:13px 15px;color:#625b66;font-size:13px;line-height:1.65;"><strong style="color:#493c50;">Didn't request this?</strong> Don't share this code with anyone. You can ignore this message; your profile will stay unchanged.</td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:19px 32px;background:#faf9fb;border-top:1px solid #f0ecf2;color:#8a8490;font-size:12px;line-height:1.6;">
+          This is an automated security email from Thriftify.<br>
+          &copy; Thriftify
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
