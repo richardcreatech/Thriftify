@@ -1,0 +1,215 @@
+#onboarding_box #profile_creation_pg {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: center;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  margin: auto;
+  padding: 1rem 0 0;
+}
+
+#profile_pic_preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  min-height: 260px;
+  overflow: hidden;
+  border: 1px solid #e8e1ef;
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 50% 40%, #f9f7fc 0, #eee8f5 72%),
+    #f4f0f8;
+}
+
+#profile_pic_preview video,
+#profile_pic_preview > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#profile_pic_preview p {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  right: 1rem;
+  margin: 0;
+  padding: 0.7rem 0.9rem;
+  border: 1px solid rgba(105, 83, 125, 0.14);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #625c69;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  text-align: center;
+}
+
+#onboarding_box #profile_creation_pg #snap_me {
+  position: absolute;
+  z-index: 1;
+  bottom: 1rem;
+  left: 50%;
+  height: auto;
+  padding: 0.8rem 1.3rem;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 999px;
+  background: rgba(33, 27, 39, 0.82);
+  color: #fff;
+  font-size: 0.9rem;
+  transform: translateX(-50%);
+  backdrop-filter: blur(8px);
+}
+
+#onboarding_box #profile_creation_pg #snap_me:hover:not(:disabled) {
+  background: #211b27;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+#onboarding_box #set_avatar {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+#onboarding_box #set_avatar h2 {
+  margin: 0 0 0.65rem;
+  color: #211b27;
+  font-size: clamp(1.55rem, 3vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+  line-height: 1.15;
+}
+
+#onboarding_box #set_avatar > div:first-child p {
+  max-width: 36ch;
+  margin: 0;
+  color: #625c69;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+#onboarding_box #choose_an_avatar {
+  margin: 0;
+}
+
+#onboarding_box #choose_an_avatar h3 {
+  margin: 0 0 0.8rem;
+  color: #39323f;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+
+#avatar_library {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+#onboarding_box #avatar_library .an_avatar {
+  aspect-ratio: 1;
+  min-width: 0;
+  overflow: hidden;
+  border: 2px solid transparent;
+  border-radius: 18px;
+  background: #f4f0f8;
+  cursor: pointer;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+#avatar_library .an_avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+#avatar_library .an_avatar:hover {
+  border-color: #c4b5fd;
+  transform: translateY(-2px);
+}
+
+#avatar_library .an_avatar.active {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+}
+
+#avatar_library .an_avatar:focus-visible {
+  outline: 3px solid #c4b5fd;
+  outline-offset: 3px;
+}
+
+#onboarding_box #profile_creation_pg button.choose_profile_pic,
+#onboarding_box #profile_creation_pg > #set_avatar > button:not(#snap_me) {
+  width: 100%;
+  min-height: 50px;
+  height: auto;
+  align-self: stretch;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+}
+
+#onboarding_box #profile_creation_pg > #set_avatar > button:not(#snap_me) {
+  border: 1px solid #ded9e3;
+  background: #fff;
+  color: #39323f;
+}
+
+#onboarding_box #profile_creation_pg > #set_avatar > button:not(#snap_me):hover:not(:disabled) {
+  border-color: #c4b5fd;
+  background: #faf8ff;
+}
+
+#onboarding_box #profile_creation_pg button.choose_profile_pic {
+  margin: 0;
+}
+
+#onboarding_box #profile_creation_pg button:disabled {
+  transform: none;
+}
+
+@media (max-width: 680px) {
+  #onboarding_box #profile_creation_pg {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+    max-width: 460px;
+    padding-top: 0.5rem;
+  }
+
+  #profile_pic_preview {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+    border-radius: 20px;
+  }
+
+  #onboarding_box #set_avatar {
+    gap: 1.2rem;
+  }
+
+  #avatar_library {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 0.55rem;
+  }
+
+  #onboarding_box #avatar_library .an_avatar {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 400px) {
+  #avatar_library {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #avatar_library .an_avatar {
+    transition: none;
+  }
+}

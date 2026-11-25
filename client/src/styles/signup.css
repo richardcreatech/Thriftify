@@ -1,0 +1,443 @@
+#progress_stepper {
+  width: 100%;
+  justify-content: space-between;
+}
+
+#progress_list {
+  display: flex;
+}
+
+#progress_list li {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#progress_list li .step-content {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#progress_list .step {
+  position: relative;
+}
+
+#progress_list .circle {
+  width: 42px;
+  height: 42px;
+  border: SOLID;
+  border-radius: 21px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#progress_list .step.active .circle {
+  /* purple */
+}
+
+#onboarding_space {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1.25rem 1rem;
+}
+
+#onboarding_box {
+  min-height: 0;
+  width: min(900px, 100%);
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(105, 83, 125, 0.18);
+  border-radius: 16px;
+  padding: 1rem clamp(1.25rem, 3vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  box-shadow: none;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+#auth_main.onboarding_page {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  height: 100svh;
+  min-height: 0;
+}
+
+#auth_main.onboarding_page #auth_header {
+  flex: 0 0 auto;
+  padding: 0.6rem 1rem;
+}
+
+#onboarding_box .onboarding_form {
+  width: 100%;
+  max-width: 540px;
+  margin: auto;
+}
+
+#onboarding_box .form_header {
+  margin-bottom: 1rem;
+}
+
+#onboarding_box .form_header h1 {
+  font-size: clamp(1.5rem, 4vw, 1.85rem);
+  font-weight: 700;
+  color: #211b27;
+  margin-bottom: 0.75rem;
+}
+
+#onboarding_box .form_header p {
+  color: #625c69;
+  line-height: 1.7;
+  max-width: 45ch;
+}
+
+#onboarding_box form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#onboarding_box .input_group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#onboarding_box .input_group label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #39323f;
+}
+
+#onboarding_box .input_group input {
+  width: 100%;
+  height: 56px;
+  padding: 0 1rem;
+  border: 1px solid #ded9e3;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  color: #211b27;
+  font-family: inherit;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#onboarding_box .input_group input::placeholder {
+  color: #89828f;
+}
+
+#onboarding_box .input_group input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+}
+
+#onboarding_box .input_group small {
+  color: #625c69;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+#onboarding_box button {
+  align-self: flex-end;
+  height: 52px;
+  padding: 0 1.75rem;
+  border: none;
+  border-radius: 12px;
+  background: #7c3aed;
+  color: white;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#onboarding_box button:hover:not(:disabled) {
+  background: #6d28d9;
+  transform: translateY(-2px);
+}
+
+#onboarding_box button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+#onboarding_box button:focus-visible {
+  outline: 2px solid #c4b5fd;
+  outline-offset: 3px;
+}
+
+#onboarding_box .otp_inputs {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: clamp(0.35rem, 2vw, 0.65rem);
+  width: min(100%, 22rem);
+}
+
+#onboarding_box .otp_inputs input {
+  min-width: 0;
+  height: 56px;
+  padding: 0;
+  border: 1px solid #ded9e3;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.92);
+  color: #211b27;
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease,
+    background-color 0.2s ease, transform 0.2s ease;
+}
+
+#onboarding_box .otp_inputs input:focus {
+  border-color: #9b6bff;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.14);
+  transform: translateY(-2px);
+}
+
+#onboarding_box .verification_footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  color: #625c69;
+  font-size: 0.9rem;
+}
+
+#onboarding_box .verification_footer p {
+  margin: 0;
+}
+
+#onboarding_box .verification_footer button {
+  align-self: auto;
+  height: auto;
+  padding: 0.25rem;
+  border-radius: 6px;
+  background: transparent;
+  color: #6d28d9;
+  font: inherit;
+}
+
+#onboarding_box .verification_footer button:hover:not(:disabled) {
+  background: rgba(124, 58, 237, 0.08);
+  color: #5b21b6;
+  transform: none;
+}
+
+#onboarding_box .password_input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ded9e3;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+  overflow: hidden;
+}
+
+#onboarding_box .password_input input {
+  flex: 1;
+  height: 56px;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #211b27;
+  padding: 0 1rem;
+  font-size: 1rem;
+}
+
+#onboarding_box .password_input button {
+  width: 56px;
+  height: 56px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #625c69;
+  cursor: pointer;
+}
+
+#onboarding_box .password_input button:hover:not(:disabled) {
+  background: transparent;
+  transform: none;
+}
+
+#onboarding_box .password_input:focus-within {
+  border-color: #7c3aed;
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.12);
+}
+
+#onboarding_box .password_requirements {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#onboarding_box .password_requirements p {
+  margin: 0;
+  color: #625c69;
+  font-size: 0.9rem;
+}
+
+#onboarding_box #progress_stepper {
+  padding: 0.5rem 0 1rem;
+}
+
+#onboarding_box #progress_list .step::after {
+  transition: background-color 0.45s ease;
+}
+
+#onboarding_box #progress_list .circle {
+  transition: color 0.3s ease, background-color 0.3s ease,
+    border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#onboarding_box #progress_list .step.active .circle {
+  animation: onboarding-step-arrive 0.55s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+#onboarding_box #progress_list .step.active p {
+  animation: onboarding-label-arrive 0.45s ease both;
+}
+
+@keyframes onboarding-step-arrive {
+  0% {
+    transform: scale(0.78);
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+  }
+  65% {
+    transform: scale(1.1);
+    box-shadow: 0 0 0 7px rgba(124, 58, 237, 0.12);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(124, 58, 237, 0);
+  }
+}
+
+@keyframes onboarding-label-arrive {
+  from {
+    opacity: 0.5;
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #onboarding_box #progress_list .step.active .circle,
+  #onboarding_box #progress_list .step.active p {
+    animation: none;
+  }
+
+  #onboarding_box #progress_list .step::after,
+  #onboarding_box #progress_list .circle,
+  #onboarding_box .otp_inputs input {
+    transition: none;
+  }
+}
+
+@media (max-height: 640px) {
+  #onboarding_box {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  #onboarding_box #progress_stepper {
+    padding: 0.25rem 0 0.5rem;
+  }
+
+  #onboarding_box #progress_list .circle {
+    width: 34px;
+    height: 34px;
+  }
+
+  #onboarding_box #progress_list .step::after {
+    top: 17px;
+  }
+
+  #onboarding_box #progress_list .step p {
+    font-size: 0.72rem;
+  }
+
+  #onboarding_box .form_header {
+    margin-bottom: 0.65rem;
+  }
+
+  #onboarding_box .form_header h1 {
+    margin-bottom: 0.4rem;
+    font-size: 1.5rem;
+  }
+
+  #onboarding_box .form_header p {
+    line-height: 1.45;
+  }
+
+  #onboarding_box form {
+    gap: 0.75rem;
+  }
+
+  #onboarding_box .otp_inputs input {
+    height: 48px;
+  }
+
+  #onboarding_box button[type="submit"] {
+    height: 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  #onboarding_space {
+    padding: 0 0.75rem 0.75rem;
+  }
+
+  #onboarding_box {
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+  }
+
+  #progress_stepper {
+    padding: 0.35rem 0 0.75rem;
+  }
+
+  #progress_list .circle {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+
+  #progress_list .step::after {
+    top: 15px;
+  }
+
+  #progress_list .step p {
+    font-size: 0.62rem;
+  }
+
+  #onboarding_box .otp_inputs input {
+    height: 48px;
+    border-radius: 8px;
+    font-size: 1.3rem;
+  }
+
+  #onboarding_box .verification_footer {
+    font-size: 0.8rem;
+  }
+
+  #onboarding_box button[type="submit"] {
+    height: 46px;
+  }
+}

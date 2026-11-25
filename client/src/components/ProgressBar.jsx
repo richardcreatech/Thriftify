@@ -1,5 +1,5 @@
-function ProgressBar({ value = 35, max = 100 }) {
-  const pct = Math.min(100, Math.max(0, (value / max) * 100));
+function ProgressBar({ value = 35, max = 100, color = "#6c63f6" }) {
+  const pct = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
 
   return (
     <div
@@ -19,7 +19,7 @@ function ProgressBar({ value = 35, max = 100 }) {
         style={{
           width: `${pct}%`,
           height: "100%",
-          backgroundColor: "#6c63f6",
+          backgroundColor: color,
           borderRadius: "999px",
           transition: "width 0.4s ease",
         }}

@@ -22,7 +22,7 @@ body {
 
 #auth_main {
   height: 100vh;
-  background-image: url("public/pattern.png");
+  background-image: url("/pattern.png");
   background-repeat: repeat;
   background-size: 40px 40px;
 }
@@ -81,4 +81,122 @@ body {
   z-index: -1;
 }
 
+#progress_stepper{
+    width:100%;
+    padding:2rem 0;
+}
 
+#progress_list{
+    display:flex;
+    justify-content:space-between;
+    width:100%;
+    padding:0;
+    margin:0;
+}
+
+.step{
+    list-style:none;
+    flex:1;
+    position:relative;
+}
+
+.step-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:.6rem;
+}
+
+.circle{
+    width:42px;
+    height:42px;
+    border-radius:50%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border:2px solid #d1d5db;
+    background:#fff;
+    font-weight:600;
+    transition:.3s ease;
+    z-index:2;
+    position:relative;
+}
+
+.step::after{
+    content:"";
+    position:absolute;
+    top:21px;
+    left:50%;
+    width:100%;
+    height:2px;
+    background:#d1d5db;
+    z-index:1;
+}
+
+.step:last-child::after{
+    display:none;
+}
+
+.step.completed .circle{
+    background:#6D28D9;
+    color:white;
+    border-color:#6D28D9;
+}
+
+.step.active .circle{
+    border-color:#6D28D9;
+    color:#6D28D9;
+}
+
+.step.upcoming .circle{
+    border-color:#d1d5db;
+    color:#9ca3af;
+}
+
+.step.completed::after{
+    background:#6D28D9;
+}
+
+.step.completed .circle{
+    background:#6D28D9;
+    color:white;
+    border-color:#6D28D9;
+}
+
+.step.active .circle{
+    border-color:#6D28D9;
+    color:#6D28D9;
+}
+
+.step.upcoming .circle{
+    border-color:#d1d5db;
+    color:#9ca3af;
+}
+
+.step.completed::after{
+    background:#6D28D9;
+}
+
+.step p{
+    font-size:.85rem;
+    margin:0;
+    color:#666;
+    text-align:center;
+}
+
+.step.active p{
+    color:#6D28D9;
+    font-weight:600;
+}
+
+.door_open {
+  display: none;
+}
+
+.aside_link:hover .door_closed {
+  display: none;
+}
+
+.aside_link:hover .door_open {
+  display: inline-block;
+}

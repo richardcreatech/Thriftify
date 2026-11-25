@@ -10,6 +10,13 @@ function Dashboard() {
   const [activeCategory, setActiveCategory] = useState("All");
   const [brands, setBrands] = useState([]);
 
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ARTICLES_PER_PAGE = 6;
+
+  const start = (currentPage - 1) * ARTICLES_PER_PAGE;
+  const end = start + ARTICLES_PER_PAGE;
+
   useEffect(() => {
     const fetchArticles = async () => {
       try {
@@ -44,17 +51,20 @@ function Dashboard() {
       ? brands
       : brands.filter((b) => b.category === activeCategory);
 
+  const currentArticles = filtered.slice(start, end);
+  const totalPages = Math.ceil(filtered.length / ARTICLES_PER_PAGE);
   return (
     <section id="dashboard_pg">
-     
-
       {/* Filter tabs */}
       <div className="filter-tabs">
         {categories.map((cat) => (
           <button
             key={cat}
             className={`filter-tab${activeCategory === cat ? " filter-tab--active" : ""}`}
-            onClick={() => setActiveCategory(cat)}
+            onClick={() => {
+              setActiveCategory(cat);
+              setCurrentPage(1);
+            }}
           >
             {cat}
           </button>
@@ -63,11 +73,31 @@ function Dashboard() {
 
       {/* Cards grid */}
       <div className="brand-grid">
-        {filtered.map((brand) => (
+        {currentArticles.map((brand) => (
           <BrandCard key={brand.id} brand={brand} />
         ))}
       </div>
+
       {/* <canvas></canvas> */}
+      <div className="pagination">
+        <button
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+        >
+          ← Previous
+        </button>
+
+        <span>
+          Page {currentPage} of {totalPages}
+        </span>
+
+        <button
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+        >
+          Next →
+        </button>
+      </div>
     </section>
   );
 }

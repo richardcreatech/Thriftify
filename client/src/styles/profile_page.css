@@ -364,3 +364,157 @@
   color: white;
   margin-top: auto;
 }
+
+.profile_edit_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0 4px 1rem;
+}
+
+.profile_edit_header h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.profile_edit_header button,
+.profile_edit_actions button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.7rem 1rem;
+  background: #8a1db6;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+}
+
+.profile_edit_header button:disabled,
+.profile_edit_actions button:disabled,
+.profile_edit_resend:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.profile_error,
+.profile_edit_error {
+  color: #b42318;
+}
+
+.profile_edit_overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.72);
+}
+
+.profile_edit_dialog {
+  width: min(100%, 520px);
+  max-height: min(90vh, 760px);
+  overflow-y: auto;
+  padding: 1.5rem;
+  border: 1px solid #39333d;
+  border-radius: 14px;
+  background: #17131d;
+  color: #fff;
+}
+
+.profile_edit_dialog_header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.profile_edit_dialog_header h2 {
+  margin: 0 0 0.4rem;
+}
+
+.profile_edit_dialog_header p {
+  margin: 0;
+  color: #c3bac9;
+  line-height: 1.5;
+}
+
+.profile_edit_close {
+  align-self: flex-start;
+  border: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.profile_edit_dialog form {
+  display: grid;
+  gap: 1rem;
+}
+
+.profile_edit_dialog label {
+  display: grid;
+  gap: 0.45rem;
+  color: #eee8f2;
+  font-size: 0.9rem;
+}
+
+.profile_edit_dialog input,
+.profile_edit_dialog textarea {
+  width: 100%;
+  border: 1px solid #514859;
+  border-radius: 7px;
+  padding: 0.7rem;
+  background: #0e0c11;
+  color: #fff;
+  font: inherit;
+}
+
+.profile_edit_dialog input[type="file"] {
+  padding: 0.5rem;
+}
+
+.profile_edit_actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+.profile_edit_actions .profile_edit_cancel {
+  border: 1px solid #514859;
+  background: transparent;
+}
+
+.profile_edit_resend {
+  justify-self: start;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  color: #d78ff1;
+  font: inherit;
+  cursor: pointer;
+}
+
+.profile_edit_message {
+  color: #a4e7b0;
+}
+
+@media (max-width: 640px) {
+  #layer_1,
+  #layer_2 {
+    grid-template-columns: 1fr;
+  }
+
+  #layer_1 {
+    height: auto;
+  }
+
+  #layer_1 article {
+    min-height: 160px;
+  }
+
+  .profile_edit_actions {
+    flex-direction: column-reverse;
+  }
+}
