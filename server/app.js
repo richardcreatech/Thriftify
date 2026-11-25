@@ -12,6 +12,5 @@ app.use("/articles", article_routes);
 app.use("/market", market_routes);
 
 app.listen(5000, () => {
-  console.log("The server is runpm run devnnng successfully");
+  console.log("The server is running successfully");
 });
- 

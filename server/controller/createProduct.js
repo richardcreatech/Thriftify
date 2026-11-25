@@ -1,46 +1,87 @@
-const { Sellers, Markets } = require("../model/db");
+const pool = require("../model/db");
 const { uploadImageToS3 } = require("../utils/putObject");
 
 const createProduct = async (req, res) => {
-  // console.log(req.body)
-  // console.log(req.file.originalname)
-  // console.log(req.file.mimetype)
-  // console.log(req.file.size)
   try {
     const { marketId } = req.params;
-    const { name, category, price, quantity } = req.body;
+    const { name, description, category, condition, price, quantity } =
+      req.body;
 
-    const seller = await Sellers.findOne({
-      user_id: req.user.id,
-    });
-
-    if (!seller) {
-      return res.status(404).json({
+    // 1. Validate product details
+    if (typeof name !== "string" || !name.trim()) {
+      return res.status(400).json({
         success: false,
-        message: "Seller not found.",
+        message: "Product name is required.",
       });
     }
 
-    const market = await Markets.findById(marketId);
+    if (typeof category !== "string" || !category.trim()) {
+      return res.status(400).json({
+        success: false,
+        message: "Please select a category.",
+      });
+    }
+
+    const productPrice = Number(price);
+    const productQuantity = Number(quantity);
+
+    if (
+      price === undefined ||
+      price === "" ||
+      !Number.isFinite(productPrice) ||
+      productPrice < 0
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Price must be a valid non-negative number.",
+      });
+    }
+
+    if (
+      quantity === undefined ||
+      quantity === "" ||
+      !Number.isSafeInteger(productQuantity) ||
+      productQuantity < 0
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Quantity must be a valid non-negative whole number.",
+      });
+    }
+
+    // 2. Find the seller
+    const sellerResult = await pool.query(
+      "SELECT id FROM sellers WHERE user_id = $1",
+      [req.user.id],
+    );
+
+    const seller = sellerResult.rows[0];
+
+    if (!seller) {
+      return res.status(403).json({
+        success: false,
+        message: "You must be a seller to create products.",
+      });
+    }
+
+    // 3. Verify marketplace ownership
+    const marketResult = await pool.query(
+      `SELECT id
+       FROM markets
+       WHERE id = $1 AND owner_id = $2`,
+      [marketId, seller.id],
+    );
+
+    const market = marketResult.rows[0];
 
     if (!market) {
       return res.status(404).json({
         success: false,
-        message: "Marketplace not found.",
+        message: "Marketplace not found or you do not own it.",
       });
     }
 
-    // Ensure the seller owns this marketplace
-    if (market.owner.toString() !== seller._id.toString()) {
-      return res.status(403).json({
-        success: false,
-        message: "You are not allowed to add products to this marketplace.",
-      });
-    }
-
-    // const randomImage =
-    //   productImages[Math.floor(Math.random() * productImages.length)];
-
+    // 4. Require an image
     if (!req.file) {
       return res.status(400).json({
         success: false,
@@ -48,41 +89,87 @@ const createProduct = async (req, res) => {
       });
     }
 
+    // 5. Upload image to S3
     const uploadResult = await uploadImageToS3(req.file);
 
-    if (!uploadResult) {
+    if (!uploadResult?.url) {
       return res.status(500).json({
         success: false,
         message: "Failed to upload image.",
       });
     }
 
-    const { url } = uploadResult;
+    // 6. Insert product
+    const productResult = await pool.query(
+      `INSERT INTO products (
+     market_id,
+     name,
+     description,
+     category,
+     condition,
+     price,
+     quantity
+   )
+   VALUES ($1, $2, $3, $4, $5, $6, $7)
+   RETURNING *`,
+      [
+        market.id,
+        name.trim(),
+        typeof description === "string" && description.trim()
+          ? description.trim()
+          : null,
+        category.trim(),
+        condition,
+        productPrice,
+        productQuantity,
+      ],
+    );
 
-    const newProduct = {
-      name,
-      category,
-      price,
-      quantity,
-      imageURL: url,
-    };
+    const product = productResult.rows[0];
 
-    market.products.push(newProduct);
+    // 7. Save the image against the new product
+    await pool.query(
+      `INSERT INTO product_images (
+         product_id, image_url, is_primary, display_order
+       )
+       VALUES ($1, $2, TRUE, 0)`,
+      [product.id, uploadResult.url],
+    );
 
-    seller.total_products += 1;
-
-    await market.save();
-    await seller.save();
+    // 8. Retrieve all products with their images
+    const productsResult = await pool.query(
+      `SELECT
+         p.*,
+         COALESCE(
+           (
+             SELECT json_agg(
+               json_build_object(
+                 'id', pi.id,
+                 'image_url', pi.image_url,
+                 'is_primary', pi.is_primary,
+                 'display_order', pi.display_order
+               )
+               ORDER BY pi.display_order ASC, pi.id ASC
+             )
+             FROM product_images pi
+             WHERE pi.product_id = p.id
+           ),
+           '[]'::json
+         ) AS images
+       FROM products p
+       WHERE p.market_id = $1
+       ORDER BY p.created_at DESC, p.id DESC`,
+      [market.id],
+    );
 
     return res.status(201).json({
       success: true,
       message: "Product created successfully.",
-      product: market.products[market.products.length - 1],
-      products: market.products,
-      market,
+      product,
+      products: productsResult.rows,
     });
-  } catch (err) {
-    console.error(err);
+  } catch (error) {
+    console.error("Create product error:", error);
 
     return res.status(500).json({
       success: false,

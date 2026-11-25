@@ -15,9 +15,9 @@ const {
 } = require("../controller/getMarketPerformance");
 
 market_routes.get("/get_market", authMiddle, getMarketplaces);
+market_routes.post("/make", authMiddle,upload.single("logo"), create_a_market);
 market_routes.get("/market_info/:marketId", authMiddle, getMarketInfo);
 market_routes.get("/market_performance", authMiddle, get_market_performance);
-market_routes.post("/make", authMiddle, create_a_market);
 market_routes.post("/create_market/:marketId", authMiddle, upload.single("image"),createProduct);
 market_routes.patch(
   "/edit_product/:marketId/product/:productId",

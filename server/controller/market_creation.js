@@ -1,64 +1,106 @@
-const { Sellers } = require("../model/db");
-const { Markets } = require("../model/db");
+const pool = require("../model/db");
+const { uploadImageToS3 } = require("../utils/putObject");
 
 const create_a_market = async (req, res) => {
   try {
     const { name, description, target_funds } = req.body;
     const userId = req.user.id;
 
-    const sellers = await Sellers.findOne({ user_id: userId });
-
-    if (!sellers) {
-      return res.status(404).json({
-        message: "Seller not found",
-      });
-    }
-
-    if (!name) {
+    // 1. Validate the marketplace name
+    if (typeof name !== "string" || !name.trim()) {
       return res.status(400).json({
         success: false,
-        message: "Marketplace name are required.",
+        message: "Marketplace name is required.",
       });
     }
 
-    const marketplaceLogos = [
-      "https://i.pinimg.com/1200x/4c/5c/eb/4c5ceb25f407b3a60a9550858caaf4fd.jpg",
-      "https://i.pinimg.com/736x/b8/fe/3d/b8fe3d99156ae26e76fee0d674c30aa6.jpg",
-      "https://i.pinimg.com/1200x/49/fb/18/49fb18493c74a9f97461f6c08cc382bf.jpg",
-      "https://i.pinimg.com/736x/ee/d4/b6/eed4b615981b421f8a6eb50ee3cd1e12.jpg",
-      "https://i.pinimg.com/1200x/f6/8f/94/f68f94899c4deda2d139af4d9ab313c8.jpg",
-      "https://i.pinimg.com/736x/8d/e1/1b/8de11be6d4b730fa9f1fcdede06ca3c5.jpg",
-    ];
+    // 2. Validate target funds
+    const targetFunds =
+      target_funds === undefined ||
+      target_funds === null ||
+      target_funds === ""
+        ? 0
+        : Number(target_funds);
 
-    const getRandomMarketplaceLogo = () => {
-      const randomIndex = Math.floor(Math.random() * marketplaceLogos.length);
-      return marketplaceLogos[randomIndex];
-    };
+    if (!Number.isFinite(targetFunds) || targetFunds < 0) {
+      return res.status(400).json({
+        success: false,
+        message: "Target funds must be a valid non-negative number.",
+      });
+    }
 
-    // Create marketplace
-    const marketplace = await Markets.create({
-      owner: sellers._id, // comes from authentication middleware
-      name,
-      logo: getRandomMarketplaceLogo(),
-      description,
-      target_funds,
-    });
+    // 3. Find the seller belonging to the logged-in user
+    const sellerResult = await pool.query(
+      "SELECT id FROM sellers WHERE user_id = $1",
+      [userId]
+    );
 
-    sellers.markets.push(marketplace._id);
-    await sellers.save();
+    const seller = sellerResult.rows[0];
 
-    const sellers_markets = await Sellers.findOne({
-      user_id: req.user.id,
-    }).populate("markets");
+    if (!seller) {
+      return res.status(404).json({
+        success: false,
+        message: "Seller not found.",
+      });
+    }
 
+    // 4. Require a marketplace image
+    if (!req.file) {
+      return res.status(400).json({
+        success: false,
+        message: "Please upload a marketplace image.",
+      });
+    }
+
+    // 5. Upload the image to S3
+    const uploadedImage = await uploadImageToS3(req.file);
+
+    if (!uploadedImage?.url) {
+      throw new Error("Failed to upload marketplace image.");
+    }
+
+    const logo = uploadedImage.url;
+
+    // 6. Create the marketplace
+    const marketResult = await pool.query(
+      `INSERT INTO markets (
+        owner_id,
+        name,
+        description,
+        logo,
+        target_funds
+      )
+      VALUES ($1, $2, $3, $4, $5)
+      RETURNING *`,
+      [
+        seller.id,
+        name.trim(),
+        description?.trim() || null,
+        logo,
+        targetFunds,
+      ]
+    );
+
+    const marketplace = marketResult.rows[0];
+
+    // 7. Retrieve all marketplaces belonging to this seller
+    const marketsResult = await pool.query(
+      `SELECT *
+       FROM markets
+       WHERE owner_id = $1
+       ORDER BY created_at DESC`,
+      [seller.id]
+    );
+
+    // 8. Return the created marketplace and seller's marketplaces
     return res.status(201).json({
       success: true,
       message: "Market created successfully.",
       marketplace,
-      sellers_market: sellers_markets.markets,
+      sellers_market: marketsResult.rows,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Create marketplace error:", error);
 
     return res.status(500).json({
       success: false,
