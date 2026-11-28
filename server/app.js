@@ -19,6 +19,13 @@ app.use(
   })
 );
 
+// Health check
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Thriftify API is running"
+  });
+});
+
 app.use("/auth", auth_routes);
 app.use("/articles", article_routes);
 app.use("/market", market_routes);
