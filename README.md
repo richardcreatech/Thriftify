@@ -24,7 +24,8 @@ Thriftify addresses these challenges by providing a centralized platform with a 
 -  Browse items by category
 -  Upload product images
 -  User authentication and authorization
--  Create, edit, and manage listings
+- Email verification required before profile changes are saved
+- Create, edit, and manage listings
 -  Save or favorite items (if implemented)
 -  Responsive design
 
@@ -44,7 +45,7 @@ Thriftify addresses these challenges by providing a centralized platform with a 
 - MongoDB
 
 ### File Storage
-- AWS S3
+- Cloudinary
 
 ### Authentication
 - JWT Authentication
@@ -74,5 +75,8 @@ npm install
 npm run dev
 ```
 
-## 📂 Project Structure
+The server needs SMTP credentials to send account and profile verification codes. Configure `SMTP_USER` and `SMTP_PASSWORD` in `server/.env`. Optionally set `SMTP_HOST` and `SMTP_PORT`; they default to Gmail SMTP on port 465.
 
+Image uploads require `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, and `CLOUDINARY_API_SECRET` in `server/.env`.
+
+## 📂 Project Structure
