@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "../../styles/performance.css";
 import ProgressBar from "../../components/ProgressBar";
+import { API_BASE_URL } from "../../config/api.js";
 
 const COLORS = ["#b45cff", "#e36acb", "#6e8cff", "#39c5ab", "#f0a35e"];
 const currencyFormatter = new Intl.NumberFormat("en-NG", {
@@ -43,7 +44,7 @@ function Performance() {
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
-        "http://localhost:5000/market/market_performance",
+        `${API_BASE_URL}/market/market_performance`,
         {
           method: "GET",
           headers: {

@@ -1,6 +1,7 @@
 
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api.js";
 
 function Verification() {
   const [otp, setOtp] = useState(Array(6).fill(""));
@@ -62,7 +63,7 @@ function Verification() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/auth/token",
+        `${API_BASE_URL}/auth/token`,
         {
           method: "POST",
           headers: {

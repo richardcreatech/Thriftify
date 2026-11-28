@@ -7,6 +7,7 @@ import {
   faXmark,
   faTrashCan,
 } from "@fortawesome/free-solid-svg-icons";
+import { API_BASE_URL } from "../config/api.js";
 
 function CreateMarket({ handlePopup, onMarketCreated }) {
   const [name, setName] = useState("");
@@ -100,7 +101,7 @@ function CreateMarket({ handlePopup, onMarketCreated }) {
       formData.append("target_funds", String(funds));
       formData.append("logo", image);
 
-      const response = await fetch("http://localhost:5000/market/make", {
+      const response = await fetch(`${API_BASE_URL}/market/make`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

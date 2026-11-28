@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../../styles/profile_page.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShieldHeart } from "@fortawesome/free-solid-svg-icons";
+import { API_BASE_URL } from "../../config/api.js";
 
 function Profile() {
   const [user, setUser] = useState({});
@@ -25,7 +26,7 @@ function Profile() {
       const token = localStorage.getItem("token");
 
       try {
-        const res = await fetch("http://localhost:5000/auth/get_seller_profile", {
+        const res = await fetch(`${API_BASE_URL}/auth/get_seller_profile`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
@@ -91,7 +92,7 @@ function Profile() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/auth/profile/edit/request-verification",
+        `${API_BASE_URL}/auth/profile/edit/request-verification`,
         {
           method: "POST",
           headers: {
@@ -136,7 +137,7 @@ function Profile() {
       }
 
       const response = await fetch(
-        "http://localhost:5000/auth/profile/edit/confirm",
+        `${API_BASE_URL}/auth/profile/edit/confirm`,
         {
           method: "POST",
           headers: {

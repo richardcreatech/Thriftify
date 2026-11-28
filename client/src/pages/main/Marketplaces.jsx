@@ -16,6 +16,7 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import CreateMarket from "../../components/CreateMarket";
+import { API_BASE_URL } from "../../config/api.js";
 
 function Marketplaces() {
   const [create_markets, set_create_markets] = useState(false);
@@ -41,7 +42,7 @@ function Marketplaces() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/market/get_market",
+        `${API_BASE_URL}/market/get_market`,
         {
           method: "GET",
           headers: {
@@ -100,7 +101,7 @@ function Marketplaces() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/market/delete_market/${marketId}`,
+        `${API_BASE_URL}/market/delete_market/${marketId}`,
         {
           method: "DELETE",
           headers: {

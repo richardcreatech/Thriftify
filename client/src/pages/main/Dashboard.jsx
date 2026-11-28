@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ProfileCard from "../../components/ProfileCard";
 import "../../styles/dashboard.css";
 import BrandCard from "../../components/BrandCard";
+import { API_BASE_URL } from "../../config/api.js";
 // import brands from "../../data/brands";
 
 // Derive unique categories from the data
@@ -21,7 +22,7 @@ function Dashboard() {
     const fetchArticles = async () => {
       try {
         const response = await fetch(
-          "http://localhost:5000/articles/get_all_articles",
+          `${API_BASE_URL}/articles/get_all_articles`,
         );
         const data = await response.json();
 

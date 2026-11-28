@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../../../styles/create_process.css";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api.js";
 
 const avatars = [
   "https://api.dicebear.com/9.x/adventurer/png?seed=Richard",
@@ -131,7 +132,7 @@ function Profile_Creation() {
       const formData = new FormData();
       formData.append("image", file);
 
-      const response = await fetch("http://localhost:5000/auth/pic", {
+      const response = await fetch(`${API_BASE_URL}/auth/pic`, {
         method: "PATCH",
         headers: {
           Authorization: `Bearer ${token}`,

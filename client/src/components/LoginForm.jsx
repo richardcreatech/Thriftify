@@ -2,6 +2,7 @@ import { useState } from "react";
 import "../styles/login.css";
 import Notification from "../components/Notification";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../config/api.js";
 
 function LoginForm() {
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ function LoginForm() {
 
     const my_details = { email, password: passcode };
 
-    const response = await fetch(`http://localhost:5000/auth/sign_in`, {
+    const response = await fetch(`${API_BASE_URL}/auth/sign_in`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

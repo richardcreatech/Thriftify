@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { API_BASE_URL } from "../config/api.js";
 
 const categories = [
   "Electronics",
@@ -40,7 +41,7 @@ function CreateProductModal({ isOpen, onClose, marketId }) {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/market/create_market/${marketId}`,
+        `${API_BASE_URL}/market/create_market/${marketId}`,
         {
           method: "POST",
           headers: {

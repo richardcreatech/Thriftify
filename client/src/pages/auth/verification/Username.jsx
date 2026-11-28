@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { API_BASE_URL } from "../../../config/api.js";
 
 function Username() {
   const [username, setUsername] = useState("");
@@ -28,7 +29,7 @@ function Username() {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/auth/set_user", {
+      const response = await fetch(`${API_BASE_URL}/auth/set_user`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

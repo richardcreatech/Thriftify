@@ -9,6 +9,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import market_icon from "../../assets/market_icon.png";
 import "../../styles/products.css";
+import { API_BASE_URL } from "../../config/api.js";
 // import CreateProductModal from "../../components/CreateProductModal";
 
 const categories_box = [
@@ -156,7 +157,7 @@ function SingleMarket() {
       formData.append("image", imageFile);
 
       const response = await fetch(
-        `http://localhost:5000/market/create_market/${id}`,
+        `${API_BASE_URL}/market/create_market/${id}`,
         {
           method: "POST",
           headers: {
@@ -206,7 +207,7 @@ function SingleMarket() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/market/delete_product/${id}/product/${productToDelete.id}`,
+        `${API_BASE_URL}/market/delete_product/${id}/product/${productToDelete.id}`,
         {
           method: "DELETE",
           headers: {
@@ -251,7 +252,7 @@ function SingleMarket() {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        `http://localhost:5000/market/edit_product/${id}/product/${selectedProduct.id}`,
+        `${API_BASE_URL}/market/edit_product/${id}/product/${selectedProduct.id}`,
         {
           method: "PATCH",
           headers: {
@@ -299,7 +300,7 @@ function SingleMarket() {
         const token = localStorage.getItem("token");
 
         const response = await fetch(
-          `http://localhost:5000/market/market_info/${id}`,
+          `${API_BASE_URL}/market/market_info/${id}`,
           {
             method: "GET",
             headers: {

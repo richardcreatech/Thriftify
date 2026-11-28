@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/profile_card.css";
+import { API_BASE_URL } from "../config/api.js";
 
 function ProfileCard() {
   const [user, setUser] = useState(null);
@@ -10,7 +11,7 @@ function ProfileCard() {
       const token = localStorage.getItem("token");
 
       const res = await fetch(
-        "http://localhost:5000/auth/get_seller_profile",
+        `${API_BASE_URL}/auth/get_seller_profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
