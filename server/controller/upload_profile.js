@@ -1,5 +1,5 @@
 const pool = require("../model/db");
-const { uploadImageToS3 } = require("../utils/putObject");
+const { uploadImageToCloudinary } = require("../utils/uploadImage");
 
 const uploadProfilePicture = async (req, res) => {
   try {
@@ -51,10 +51,10 @@ const uploadProfilePicture = async (req, res) => {
       });
     }
 
-    // 5. Upload the image to S3
-    const uploadResult = await uploadImageToS3(req.file);
+    // 5. Upload the image to Cloudinary
+    const uploadResult = await uploadImageToCloudinary(req.file);
 
-    // 6. Save the S3 details in PostgreSQL
+    // 6. Save the Cloudinary URL and public ID in PostgreSQL
     const imageUrl = uploadResult.url;
     const imageKey = uploadResult.key;
 

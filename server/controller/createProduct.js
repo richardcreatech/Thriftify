@@ -1,5 +1,5 @@
 const pool = require("../model/db");
-const { uploadImageToS3 } = require("../utils/putObject");
+const { uploadImageToCloudinary } = require("../utils/uploadImage");
 
 const createProduct = async (req, res) => {
   try {
@@ -89,8 +89,8 @@ const createProduct = async (req, res) => {
       });
     }
 
-    // 5. Upload image to S3
-    const uploadResult = await uploadImageToS3(req.file);
+    // 5. Upload image to Cloudinary
+    const uploadResult = await uploadImageToCloudinary(req.file);
 
     if (!uploadResult?.url) {
       return res.status(500).json({

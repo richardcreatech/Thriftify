@@ -1,5 +1,5 @@
 const pool = require("../model/db");
-const { uploadImageToS3 } = require("../utils/putObject");
+const { uploadImageToCloudinary } = require("../utils/uploadImage");
 
 const create_a_market = async (req, res) => {
   try {
@@ -52,8 +52,8 @@ const create_a_market = async (req, res) => {
       });
     }
 
-    // 5. Upload the image to S3
-    const uploadedImage = await uploadImageToS3(req.file);
+    // 5. Upload the image to Cloudinary
+    const uploadedImage = await uploadImageToCloudinary(req.file);
 
     if (!uploadedImage?.url) {
       throw new Error("Failed to upload marketplace image.");

@@ -2,7 +2,7 @@ const bcrypt = require("bcryptjs");
 const pool = require("../model/db");
 const { generateOtp } = require("../utils/generateOtp");
 const { sendEmail } = require("../utils/sendEmail");
-const { uploadImageToS3 } = require("../utils/putObject");
+const { uploadImageToCloudinary } = require("../utils/uploadImage");
 
 const requestProfileEditVerification = async (req, res) => {
   try {
@@ -216,7 +216,7 @@ const confirmProfileEdit = async (req, res) => {
     if (countryProvided) addUpdate("country", country);
 
     if (req.file) {
-      const image = await uploadImageToS3(req.file);
+      const image = await uploadImageToCloudinary(req.file);
 
       if (!image?.url || !image?.key) {
         throw new Error("Profile image upload did not return an image URL.");
